@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>腸元気度スキャン</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background-color: #f0f8ff;
+        }
+
+        #result-area {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .speech-bubble {
+            position: relative;
+            background: #e0f7fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            max-width: 400px;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 30px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: #e0f7fa transparent transparent transparent;
+        }
+
+        #yakonman {
+            width: 100px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>腸内スキャン</h1>
+    <p>YAKONMANの腸内環境をスキャンして、腸元気度をチェックしましょう！</p>
+    <button onclick="scanGut()">スキャンする</button>
+    <a href="/">トップに戻る</a>
+
+    <div id="result-area" style="display: none;">
+        <h2>腸元気度スキャン結果</h2>
+        <p id="score"></p>
+        <p id="advice"></p>
+
+        <div class="speech-bubble" id="comment"></div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Emoji_u1f60a.svg/120px-Emoji_u1f60a.svg.png" alt="YAKONMAN" id="yakonman">
+    </div>
+
+    <script>
+        function scanGut() {
+            const scores = [82, 65, 90, 74, 58];
+            const advices = [
+                "食物繊維をもう少し増やすと、腸がもっと元気になります！",
+                "水分をしっかりとって、腸の動きをサポートしましょう！",
+                "発酵食品を取り入れて、善玉菌を増やしましょう！",
+                "運動不足に注意！腸の動きにも影響します。",
+                "ヤーコンを食べると腸内環境が改善されますよ！"
+            ];
+            const comments = [
+                "おおっ、なかなかの腸元気度だね！",
+                "うーん、もう少し頑張れるかも？",
+                "素晴らしい！腸内環境が整ってるよ！",
+                "ちょっと悪玉菌が元気すぎるかも…",
+                "ヤーコンパワーで腸を元気にしよう！"
+            ];
+
+            const index = Math.floor(Math.random() * scores.length);
+
+            document.getElementById("score").textContent = `スコア：${scores[index]}`;
+            document.getElementById("advice").textContent = `アドバイス：${advices[index]}`;
+            document.getElementById("comment").textContent = comments[index];
+            document.getElementById("result-area").style.display = "block";
+        }
+    </script>
+
+</body>
+
+</html>
